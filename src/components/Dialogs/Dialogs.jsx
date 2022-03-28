@@ -12,13 +12,13 @@ const Dialogs = (props) => {
 
   let sendMessage = () => {
     let message = newMessage.current.value;
-    props.sendMessage(message);
-    props.updateNewMessage("");
+    props.dispatch({ type: "SEND-MESSAGE" });
+    props.dispatch({ type: "UPDATE-NEW-MESSAGE", newMessage: "" });
   };
 
   let onPostChang = () => {
     let message = newMessage.current.value;
-    props.updateNewMessage(message);
+    props.dispatch({ type: "UPDATE-NEW-MESSAGE", newMessage: message });
   };
 
   return (
