@@ -1,4 +1,9 @@
-// import { _callSubscriber } from './../../render';
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_TEXT = 'UPDATE-NEW-TEXT';
+const SEND_MESSAGE = 'SEND-MESSAGE';
+const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
+
+
 let store = {
   _state: {
 
@@ -146,7 +151,7 @@ let store = {
   },
 
   dispatch(action) {
-    if (action.type === 'ADD-POST') {
+    if (action.type === ADD_POST) {
     let newPost = {
       id: 5,
       message: this._state.profilePage.newPostText,
@@ -156,10 +161,10 @@ let store = {
       this._state.profilePage.newPostText = '';
       
       this._callSubscriber(this._state)
-    } else if (action.type === 'UPDATE-NEW-TEXT') {
+    } else if (action.type === UPDATE_NEW_TEXT) {
       this._state.profilePage.newPostText = action.newText;
       this._callSubscriber(this._state)
-    } else if (action.type === 'SEND-MESSAGE') {
+    } else if (action.type === SEND_MESSAGE) {
       let newMessage = {
         id: 5,
         message: this._state.messagePage.newMessage
@@ -167,12 +172,17 @@ let store = {
       this._state.messagePage.messageData.fromMe.push(newMessage)
       this._state.messagePage.newMessage = '';
       this._callSubscriber(this._state)
-    } else if (action.type === 'UPDATE-NEW-MESSAGE') {
+    } else if (action.type === UPDATE_NEW_MESSAGE) {
         this._state.messagePage.newMessage = action.newMessage;
         this._callSubscriber(this._state)
     }
   },
-}  
+} 
+
+export const addPostActionCreator = () => ({ type: ADD_POST });
+
+export const updateNewTextActionCreator = (text) => 
+  ({ type: UPDATE_NEW_TEXT, newText: text });
 
 // чтобы можно было узнать что есть в state через консоль
   window.store = store
