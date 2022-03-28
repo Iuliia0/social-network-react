@@ -1,24 +1,52 @@
-import logo from './logo.svg';
+// import React from "react";
+// import ReactDOM from "react-dom";
+// import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
+import Header from './components/Header/Header.jsx'
+import Navbar from './components/Navbar/Navbar.jsx';
+import News from './components/News/News';
+import Profile from './components/Profile/Profile.jsx';
+import Music from './components/Music/Music';
+import Settings from './components/Settings/Settings';
+import Dialogs from './components/Dialogs/Dialogs';
+import { BrowserRouter } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
-function App() {
+const App = (props) => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="app-wrapper">
+        <Header />
+        <Navbar state={props.state.navbar}/>
+        <div className="app-wrapper-content">
+          <Routes>
+            <Route 
+            path="/dialogs" 
+            element={ <Dialogs 
+            state={props.state.messagePage}
+            sendMessage={props.sendMessage}
+            updateNewMessage={props.updateNewMessage}
+            />} 
+            />
+            
+            <Route 
+            path="/profile" 
+            element={ <Profile 
+            profilePage={props.state.profilePage}
+            dispatch={props.dispatch} 
+            // addPost={props.addPost}
+            // updateNewText={props.updateNewText}
+            /> } 
+            />
+            <Route path="/news" element={ <News /> } />
+            <Route path="/music" element={ <Music /> } />
+            <Route path="/settings" element={ <Settings /> } />
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

@@ -1,0 +1,54 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+
+.textWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.textBlock {
+  width: 80%;
+  border-radius: 20px;
+  height: 20px;
+  border: none;
+  resize: none;
+  background-color: #88c6fd33;
+  padding: 20px;
+  font-size: 20px;
+  line-height: 1.1;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+.textBlock:focus {
+  outline: none;
+  border: none;
+}
+
+.addButton {
+  width: 12%;
+  margin-left: 20px;
+  border: none;
+  font-size: 20px;
+  line-height: 1.1;
+  font-weight: bold;
+  color: rgb(27, 27, 27);
+  text-transform: uppercase;
+  font-family: Arial,
+    Helvetica,
+    sans-serif;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+
+/* .messages {
+
+} */
+/* .message {
+
+} */
