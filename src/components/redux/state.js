@@ -1,8 +1,6 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_TEXT = 'UPDATE-NEW-TEXT';
-const SEND_MESSAGE = 'SEND-MESSAGE';
-const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
-
+import profileReducer from "./profile-reducer";
+import dialogsReducer from './dialog-reducer';
+import navbarReducer from './navbar-reducer';
 
 let store = {
   _state: {
@@ -151,38 +149,17 @@ let store = {
   },
 
   dispatch(action) {
-    if (action.type === ADD_POST) {
-    let newPost = {
-      id: 5,
-      message: this._state.profilePage.newPostText,
-      likesCount: 0
-    };
-      this._state.profilePage.postsData.push(newPost)
-      this._state.profilePage.newPostText = '';
-      
-      this._callSubscriber(this._state)
-    } else if (action.type === UPDATE_NEW_TEXT) {
-      this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber(this._state)
-    } else if (action.type === SEND_MESSAGE) {
-      let newMessage = {
-        id: 5,
-        message: this._state.messagePage.newMessage
-      };
-      this._state.messagePage.messageData.fromMe.push(newMessage)
-      this._state.messagePage.newMessage = '';
-      this._callSubscriber(this._state)
-    } else if (action.type === UPDATE_NEW_MESSAGE) {
-        this._state.messagePage.newMessage = action.newMessage;
-        this._callSubscriber(this._state)
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.messagePage = dialogsReducer(this._state.messagePage, action);
+    this._state.navbar = navbarReducer(this._state.navbar, action)
+
+    this._callSubscriber(this._state)
   },
 } 
 
-export const addPostActionCreator = () => ({ type: ADD_POST });
 
-export const updateNewTextActionCreator = (text) => 
-  ({ type: UPDATE_NEW_TEXT, newText: text });
+
+
 
 // чтобы можно было узнать что есть в state через консоль
   window.store = store

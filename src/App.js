@@ -27,8 +27,6 @@ const App = (props) => {
             element={ <Dialogs 
             state={props.state.messagePage}
             dispatch={props.dispatch}
-            // sendMessage={props.sendMessage}
-            // updateNewMessage={props.updateNewMessage}
             />} 
             />
             
